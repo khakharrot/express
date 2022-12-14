@@ -1,9 +1,11 @@
 const express= require ("express")
+const custom= require ("./date")
 const app= express()
 const port=5000
 
+app.use(express.static(__dirname+"/Public"))
 
-app.get ("/",(req,res)=>(
+app.get ("/",custom,(req,res)=>(
     res.sendFile(__dirname+"/Public/HomePage.html")))
 
 app.get ("/service",(req,res)=>(
@@ -11,11 +13,9 @@ app.get ("/service",(req,res)=>(
 
 app.get ("/contact",(req,res)=>(
     res.sendFile(__dirname+"/Public/Contact.html")))
-
-    app.get ("*",(req,res)=>(
-        res.sendFile(__dirname+"/Public/Navbar.html")))
-    
-
+ 
+app.get ("/style.css",(req,res)=>(
+    res.sendFile(__dirname+"/Public/style.css")))
 
 
     app.listen(port,err=>(
